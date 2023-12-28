@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница с данными</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-2">
+    <div class="text-right">
+        <a href="/user" class="btn btn-secondary">Назад</a>
+    </div>
+    <h2 class="text-center mb-4">Список чатов</h2>
+
+    <ul class="list-group p-3">
+        <li class="list-group-item" th:each="item: ${items}">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <span>ID: </span><span th:text="${item.id}"></span><br>
+                    <span>Наименование чата: </span><span th:text="${item.nameChat}"></span><br>
+                    <span>Последнее обновление: </span><span th:text="${item.updateTimeChat}"></span><br>
+                    <span>Пользователь чата: </span><span th:text="${item.user.login}"></span><br>
+                    <span>Модель чата: </span><span th:text="${item.model.nameModel}"></span><br>
+                </div>
+                <div>
+                    <a class="btn btn-primary btn-sm mr-2" th:href="@{'chat/' + ${item.id} + '/edit'}">Изменить</a>
+                    <form th:method="POST" th:action="@{'chat/' + ${item.id} + '/delete'}" class="d-inline">
+                        <button class="btn btn-danger btn-sm" type="submit">Удалить</button>
+                    </form>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="text-center mt-4">
+        <button class="btn btn-success" data-toggle="modal" data-target="#addModal" onclick="location.href='chat/create'">Добавить</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

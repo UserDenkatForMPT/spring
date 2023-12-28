@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление нового элемента</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Добавление нового элемента</h2>
+
+    <form th:action="@{/admin/chat/create}" method="post">
+        <div class="form-group">
+            <label for="nameChat">Имя чата:</label>
+            <input type="text" class="form-control" name="nameChat" id="nameChat" required>
+        </div>
+
+        <div class="form-group">
+            <label for="user">Чей чат?:</label>
+            <select class="form-control" id="user" name="user" required>
+                <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.login}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="model">Модель чата:</label>
+            <select class="form-control" id="model" name="model" required>
+                <option th:each="model : ${models}" th:value="${model.id}" th:text="${model.nameModel}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="modules1">Первый модуль чата:</label>
+            <select class="form-control" id="modules1" name="modules1" required>
+                <option th:each="module : ${modules}" th:value="${module.id}" th:text="${module.nameModule}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="modules2">Второй модуль чата:</label>
+            <select class="form-control" id="modules2" name="modules2" required>
+                <option th:each="module : ${modules}" th:value="${module.id}" th:text="${module.nameModule}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="modules3">Третий модуль чата:</label>
+            <select class="form-control" id="modules3" name="modules3" required>
+                <option th:each="module : ${modules}" th:value="${module.id}" th:text="${module.nameModule}"></option>
+            </select>
+        </div>
+
+
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg">Добавить</button>
+            <a href="/admin/chats" class="btn btn-secondary btn-lg ml-2">Назад</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
